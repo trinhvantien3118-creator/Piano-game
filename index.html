@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Piano Game</title>
+
+    <style>
+        body {
+            text-align: center;
+            background-color: #eeeeee;
+        }
+
+        button {
+            width: 25vw;
+            height: 180px;
+            font-size: 25px;
+            background-color: white;
+            border: 2px solid black;
+            border-radius: 8px;
+            cursor: pointer;
+            touch-action: none;
+            user-select: none;
+        }
+
+        button:active {
+            background-color: lightblue;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>My Piano</h1>
+
+    <button
+        onpointerdown="playNote(event)"
+        onpointerup="stopNote()"
+        onpointercancel="stopNote()"
+        onlostpointercapture="stopNote()">
+
+        C5
+
+    </button>
+
+    <audio id="C5" src="C5-Piano.mp3" preload="auto"></audio>
+
+    <script>
+        const audio = document.getElementById("C5");
+
+        function playNote(event) {
+            event.currentTarget.setPointerCapture(event.pointerId);
+
+            audio.currentTime = 0;
+            audio.play();
+        }
+
+        function stopNote() {
+            audio.pause();
+        }
+    </script>
+
+</body>
+</html>
